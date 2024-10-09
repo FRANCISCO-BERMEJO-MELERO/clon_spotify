@@ -2,7 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import { allPlaylists, songs } from '../../lib/data.ts';
 import PlayListCard from '../../components/PlayListCard.astro';
-
+import MusicsTables from '../../components/MusicsTables.astro';
+import CardPlayButton from '../../components/CardPlayButton.jsx';
 const { id } = Astro.params;
 
 const playlist = allPlaylists.find((playlist) => playlist.id === id);
@@ -41,7 +42,9 @@ const playListSongs = songs.filter((song) => song.albumId === playlist?.albumId)
             </div>
         </div>
     </header>
-
+    <div class="pl-6 pt-6">
+        <CardPlayButton id={playlist?.id} size="large" client:load />
+    </div>
 	<div class="relative z-10 px-6 pt-10">
 
 		<div
@@ -50,9 +53,9 @@ const playListSongs = songs.filter((song) => song.albumId === playlist?.albumId)
 			</div>
 		</div>
 
+        <section class="p-6">
+            <MusicsTables songs={playListSongs} />
+        </section>
 	</div>
 </Layout>
 
-<style>
-	
-</style>

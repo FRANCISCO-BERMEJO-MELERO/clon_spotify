@@ -2,7 +2,7 @@ import React from 'react';
 import {Pause, Play} from './Player.jsx'
 import { usePlayerStore } from '../store/playerStore.js';
 
-const CardPlayButton = ({id}) => {
+const CardPlayButton = ({id, size = "small"}) => {
     const {
         currentMusic,
         IsPlaying, 
@@ -25,10 +25,12 @@ const CardPlayButton = ({id}) => {
         })
     }
 
+    const iconClassName = size === 'small' ? 'w-4 h-4' : 'w-5 h-5'
+
 
     return (
-        <button className='card-play-button rounded-full bg-green-500 p-4' onClick={handleClick}>
-            {IsPlayingPlaylist ? <Pause/> : <Play/>}
+        <button onClick={handleClick} className="card-play-button rounded-full bg-green-500 p-4 hover:scale-105 transition hover:bg-green-400">
+            {IsPlayingPlaylist ? <Pause className={iconClassName} /> : <Play className={iconClassName} />}
         </button>
     );
 }

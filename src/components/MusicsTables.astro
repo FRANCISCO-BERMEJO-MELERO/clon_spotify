@@ -1,6 +1,7 @@
 ---
 import Time from "../icons/Time.astro"
 import { type Song } from "../lib/data"
+import CardPlayButton from "./CardPlayButton"
 
 interface Props {
     songs: Song[]
@@ -23,11 +24,16 @@ const { songs } = Astro.props
         <tr class="h-[16px]"></tr>
         {
         songs.map((song, index) => (
-            <tr class="border-separate border-spacing-0 text-gray-300 text-sm font-light hover:bg-white/10 overflow-hidden transition duration-300 hover:rounded-lg">
-            <td class="px-4 py-2 w-5 rounded-tl-lg rounded-bl-lg">{index + 1}</td>
+            <tr class="border-separate border-spacing-0 text-gray-300 text-sm font-light hover:bg-white/10 overflow-hidden transition duration-300 hover:rounded-lg group">
+            <td class="px-4 py-2 w-5 rounded-tl-lg rounded-bl-lg relative group">
+                {index + 1}
+                <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                <CardPlayButton id={song.id} size="small" color="text-white" background="trasnparent"client:load albumId={song.albumId} />
+                </div>
+            </td>
             <td class="px-4 py-2 flex gap-3">
                 <picture class="">
-                <img src={song.image} alt={song.title} class="w-11 h-11" />
+                <img src={song.image} alt={song.title} class="w-11 h-11 rounded-md" />
                 </picture>
                 <div class="flex flex-col">
                 <h3 class="text-white text-base font-normal">{song.title}</h3>

@@ -5,11 +5,31 @@ export async function GET({ params, request }) {
   const { url } = request
   const urlObject = new URL(url)
   const id = urlObject.searchParams.get('id')
+  const albumIdURL = urlObject.searchParams.get('albumId')
 
-  const playlist = allPlaylists.find((playlist) => playlist.id === id)
-  const songs = allSongs.filter(song => song.albumId === playlist?.albumId)
+  console.log(albumIdURL)
+  console.log(id)
 
-  return new Response(JSON.stringify({ playlist, songs }), {
-    headers: { "content-type": "application/json" },
-  })
+  if(albumIdURL == null ){
+    const playlist = allPlaylists.find((playlist) => playlist.id === id)
+    const songs = allSongs.filter(song => song.albumId === playlist?.albumId)
+    return new Response(JSON.stringify({ playlist, songs }), {
+      headers: { "content-type": "application/json" },
+    })
+  }
+  else{
+
+    const playlist = allPlaylists.find((playlist) => playlist.albumId === Number(albumIdURL));
+      const songs = allSongs.filter(song => song.id === Number(id) && song.albumId === Number(albumIdURL));
+    return new Response(JSON.stringify({ songs, playlist }), {
+      headers: { "content-type": "application/json" },
+    })
+    // const songs = allSongs.filter(song => song.albumId === albumIdURL)
+    // return new Response(JSON.stringify({  songs }), {
+    //   headers: { "content-type": "application/json" },
+    // })
+  }
+    
+
+  
 }

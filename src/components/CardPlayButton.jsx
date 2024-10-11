@@ -62,12 +62,13 @@ const CardPlayButton = ({id, size = "small", background =  "green-500", color = 
     }
 
     const iconClassName = size === 'small' ? 'w-4 h-4' : 'w-5 h-5'
-    const backgroundColor = background === 'green-500' ? 'bg-green-500' : 'bg-transparent'
+    const backgroundColor = background === 'green-500' ? 'bg-green-500' : 'bg-zinc-800'
     const iconColor = color === 'text-black' ? 'text-black' : 'text-white'
+    const padding = size === 'small' ? 'p-3' : 'p-4'    
 
 
     return (
-        <button onClick={handleClick} className={`	card-play-button rounded-full ${backgroundColor} p-4 hover:scale-105 transition hover:${background} ${iconColor}`}>
+        <button onClick={handleClick} className={`	card-play-button rounded-full ${backgroundColor} ${padding} hover:scale-105 transition hover:${background} ${iconColor}`}>
             {IsPlayingPlaylist ? <Pause className={`${iconClassName } `} /> : <Play className={` ${iconClassName}`} />}
         </button>
     );

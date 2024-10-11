@@ -11,15 +11,15 @@ const { id, title, cover, artists } = playlist;
 const Artists = artists.join(', ');
 ---
 
-<a href={`/playlist/${id}`} class=" playlist-item flex relative overflow-hidden items-center rounded-md hover:bg-zinc-800 transition-colors duration-200 p-2">
-    <picture class=" h-12 w-12 flex-none">
-        <img src={cover} alt={title} class="w-full h-full object-cover rounded-md" />
+<a href={`/playlist/${id}`} class="playlist-item flex relative overflow-hidden items-center rounded-md hover:bg-zinc-800 transition-colors duration-200 py-2 md:justify-start justify-center">
+    <picture class="h-12 w-12 flex-none">
+        <img src={cover} alt={title} class="w-full h-full object-cover rounded-md" />x
     </picture>
-    <div class="flex flex-col flex-1 ml-2">
-        <h4 class="text-zinc-100 text-sm font-medium">
+    <div class=" flex-col flex-1 ml-2 hidden md:block">
+        <h4 class="text-zinc-100 text-sm font-medium hidden md:block">
             {title}
         </h4>
-        <p class="text-zinc-400 text-xs">
+        <p class="text-zinc-400 text-xs hidden md:block">
             {Artists}
         </p>
     </div>

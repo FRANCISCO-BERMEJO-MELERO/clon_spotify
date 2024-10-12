@@ -20,13 +20,13 @@ export const Volume = () => (
 
 const CurrentSong = ({image, title, artists}) => {
     return(
-        <div className="flex items-center pt-2  gap-5 relative overflow-hidden w-20 md:w-full">
-            <picture className="md:w-16 md:h-16 w-12 h-12 bg-zinc-800 shadow-lg rounded-md overflow-hidden ">
-                <img src={image} alt={title}/>
+        <div className="flex items-center pt-2  gap-2 md:gap-5 relative overflow-hidden w-40 md:w-full">
+            <picture className="md:w-16 md:h-16 w-12 h-12 shadow-lg overflow-hidden ">
+                <img src={image} alt={title} className="w-full h-auto object-cover rounded-md"/>
             </picture>
-            <div className=" flex-col hidden md:flex">
-                <h3 className="font-semibold text-sm block">{title}</h3>
-                <span className="text-xs opacity-60 hover:opacity-80 hover:underline">
+            <div className=" flex-col ">
+                <h3 className="md:font-semibold md:text-sm  text-xs block">{title}</h3>
+                <span className="text-xs opacity-60 hover:opacity-80 hidden md:block hover:underline">
                     {artists?.join(', ')}
                 </span>
             </div>
@@ -69,7 +69,7 @@ const SongControl = ({ audio }) => {
             value={[currentTime]}
             max={audio?.current?.duration ?? 0}
             min={0}
-            className="md:w-[400px] w-[150px]"
+            className="md:w-[400px] w-[130px]"
             onValueChange={(value) => {
                 const [newCurrentTime] = value
                 audio.current.currentTime = newCurrentTime
@@ -144,7 +144,7 @@ export function Player() {
     }
     return (
         <div className="flex flex-row justify-between w-full px-1 z-50">
-            <div className="md:w-[200px] w-20 ml-2">
+            <div className="md:w-[200px] w-40 ml-2">
             <CurrentSong {...currentMusic.song} />
             </div>
     

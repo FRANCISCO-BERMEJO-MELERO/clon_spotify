@@ -10,8 +10,8 @@ const { id, title, cover, artists } = playlist;
 const Artists = artists.join(', ');
 ---
 <article class="group relative bg-zinc-500/30 hover:bg-zinc-800 hover:shadow-xl rounded-md transition-all duration-300 ">
-    <div class="absolute right-4 bottom-[5.5rem] translate-y-4 transition-all  duration-500 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 z-10 text-black">
-        <CardPlayButton id={id} client:visible />
+    <div class="absolute md:right-4 md:bottom-[5.5rem] right-2 bottom-14 translate-y-4 transition-all  duration-500 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 z-10 text-black">
+        <CardPlayButton id={id} size="small" client:visible />
 
     </div>
     <a href={`/playlist/${id}`} class="playlist-item relative flex items-center md:gap-5 gap-2 p-2 pb-6 w-28 md:w-44 flex-col" transition:name=`playlist ${id} box`>

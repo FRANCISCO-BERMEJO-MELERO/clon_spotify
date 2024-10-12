@@ -12,9 +12,9 @@ import Greeting from '../components/Greeting.svelte';
 	>
 	<!-- <PageHeader /> -->
 
-	<div class="relative z-10 px-6 pt-10">
+	<div class="relative z-10 px-4 md:px-6 pt-6 md:pt-10">
 		<Greeting />
-		<div class="flex flex-wrap mt-6 gap-4">
+		<div class="grid grid-cols-2 md:flex md:flex-wrap mt-4 md:mt-6 text-xs md:text-sm lg:text-base gap-3 md:gap-4">
 			{playlists.map((playlist) => <PlayListCard playlist={playlist} />)}
 		</div>
 
@@ -24,10 +24,5 @@ import Greeting from '../components/Greeting.svelte';
 			</div>
 		</div>
 
-		<style></style>
 	</div>
 </Layout>
-
-<style>
-	
-</style>

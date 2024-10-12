@@ -14,19 +14,18 @@ const Artists = artists.join(', ');
         <CardPlayButton id={id} client:visible />
 
     </div>
-    <a href={`/playlist/${id}`} class=" playlist-item  relative flex items-center gap-5 p-2 pb-6 w-44 flex-col " transition:name=`playlist ${id} box`>
-        <picture class=" aspect-square w-full h-auto flex-none">
+    <a href={`/playlist/${id}`} class="playlist-item relative flex items-center md:gap-5 gap-2 p-2 pb-6 w-28 md:w-44 flex-col" transition:name=`playlist ${id} box`>
+        <picture class="aspect-square w-30 md:w-full h-auto flex-none">
             <img src={cover} alt={title} class="w-full h-full object-cover rounded-md" transition:name=`playlist ${id} image` />
         </picture>
         <div class="flex flex-auto flex-col px-2">
-            <h4 class="text-zinc-100 text-sm font-medium" transition:name=`playlist ${id} title`>
+            <h4 class="text-zinc-100 text-xs md:text-sm font-medium" transition:name=`playlist ${id} title`>
                 {title}
             </h4>
-            <span class="text-zinc-400 text-xs" transition:name=`playlist ${id} artists`>
+            <span class="text-zinc-400 text-xxs md:text-xs hidden md:block" transition:name=`playlist ${id} artists`>
                 {Artists}
             </span>
         </div>
     </a>
 
 </article>
-

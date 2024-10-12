@@ -20,11 +20,11 @@ export const Volume = () => (
 
 const CurrentSong = ({image, title, artists}) => {
     return(
-        <div className="flex items-center  gap-5 relative overflow-hidden">
-            <picture className="w-16 h16 bg-zinc-800 shadow-lg rounded-md overflow-hidden ">
+        <div className="flex items-center pt-2  gap-5 relative overflow-hidden w-20 md:w-full">
+            <picture className="md:w-16 md:h-16 w-12 h-12 bg-zinc-800 shadow-lg rounded-md overflow-hidden ">
                 <img src={image} alt={title}/>
             </picture>
-            <div className="flex flex-col ">
+            <div className=" flex-col hidden md:flex">
                 <h3 className="font-semibold text-sm block">{title}</h3>
                 <span className="text-xs opacity-60 hover:opacity-80 hover:underline">
                     {artists?.join(', ')}
@@ -69,7 +69,7 @@ const SongControl = ({ audio }) => {
             value={[currentTime]}
             max={audio?.current?.duration ?? 0}
             min={0}
-            className="w-[400px]"
+            className="md:w-[400px] w-[150px]"
             onValueChange={(value) => {
                 const [newCurrentTime] = value
                 audio.current.currentTime = newCurrentTime
@@ -97,7 +97,7 @@ const VolumeControl = () => {
     }
 
     return(
-        <div className="flex items-center gap-2 text-white">
+        <div className="flex items-center gap-2 text-white pr-1">
             <button className="opacity-70 hover:opacity-100 transition-all" onClick={volume < 0.1 ? handleClickSilence : handleClickVolume}>
                     {volume < 0.1 ? <VolumeSilence /> : <Volume />}
             </button>
@@ -106,7 +106,7 @@ const VolumeControl = () => {
                 max={100}
                 min={0}
                 value={[volume * 100]}
-                className="w-[95px]"
+                className="w-[95px] "
                 onValueChange={(value) => {
                     const [newVolume] = value
                     const volumeValue = newVolume / 100
@@ -143,23 +143,22 @@ export function Player() {
         setIsPlaying(!IsPlaying);
     }
     return (
-            <div className="flex flex-row justify-between w-full px-1 z-50">
-            <div className="w-[200px]">
+        <div className="flex flex-row justify-between w-full px-1 z-50">
+            <div className="md:w-[200px] w-20 ml-2">
             <CurrentSong {...currentMusic.song} />
             </div>
     
             <div className="grid place-content-center gap-4 flex-1">
-            <div className="flex justify-center flex-col items-center">
-                <button className="bg-white text-black rounded-full p-2" onClick={handleClick}>
-                {IsPlaying ? <Pause /> : <Play />}
-                </button>
-                <SongControl audio={audioRef} />
-                <audio ref={audioRef} />
+                <div className="flex justify-center flex-col items-center">
+                    <button className="bg-white text-black rounded-full p-2" onClick={handleClick}>
+                    {IsPlaying ? <Pause /> : <Play />}
+                    </button>
+                    <SongControl audio={audioRef} />
+                    <audio ref={audioRef} />
+                </div>
             </div>
     
-            </div>
-    
-            <div className="grid place-content-center">
+            <div className=" place-content-center hidden md:grid">
             <VolumeControl />
             </div>
         </div>

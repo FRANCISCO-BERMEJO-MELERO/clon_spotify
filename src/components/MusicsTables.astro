@@ -10,13 +10,14 @@ interface Props {
 const { songs } = Astro.props
 ---
 
+
 <table class="table-auto text-left min-w-full divide-y divide-gray-500/20">
     <thead class="">
         <tr class="text-zinc-400 text-sm">
         <th class="px-4 py-2 font-light">#</th>
         <th class="px-4 py-2 font-light">Título</th>
-        <th class="px-4 py-2 font-light">Álbum</th>
-        <th class="px-4 py-2 font-light"><Time /></th>
+        <th class="px-4 py-2 font-light hidden md:table-cell">Álbum</th>
+        <th class="px-4 py-2 font-light hidden md:table-cell"><Time /></th>
         </tr>
     </thead>
 
@@ -32,7 +33,7 @@ const { songs } = Astro.props
                 </div>
             </td>
             <td class="px-4 py-2 flex gap-3">
-                <picture class="">
+                <picture class="hidden md:block">
                 <img src={song.image} alt={song.title} class="w-11 h-11 rounded-md" />
                 </picture>
                 <div class="flex flex-col">
@@ -40,8 +41,8 @@ const { songs } = Astro.props
                 <span>{song.artists.join(", ")}</span>
                 </div>
             </td>
-            <td class="px-4 py-2">{song.album}</td>
-            <td class="px-4 py-2 rounded-tr-lg rounded-br-lg">{song.duration}</td>
+            <td class="px-4 py-2 hidden md:table-cell">{song.album}</td>
+            <td class="px-4 py-2 rounded-tr-lg rounded-br-lg hidden md:table-cell">{song.duration}</td>
             </tr>
         ))
         }
